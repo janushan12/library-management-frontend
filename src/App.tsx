@@ -2,18 +2,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookList from "./components/BookList";
 import BookForm from "./components/BookForm";
 import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import { useState } from "react";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        {/* <Route path="/" element={<BookList />} /> */}
-        <Route path="/create" element={<BookForm />} />
-        <Route path="/edit/:id" element={<BookForm />} />
-      </Routes>
-    </BrowserRouter>
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("token")
   );
+  if (!isLoggedIn) 
+    return <Login onLogin={() => setIsLoggedIn(true)} />;
+
+  return <Dashboard />;
 }
 
 export default App;

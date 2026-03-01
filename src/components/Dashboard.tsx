@@ -3,12 +3,15 @@ import "../Library.css"
 import { Book } from "../types/Book"
 import API from "../services/api";
 import BookModal from "./BookModal";
+import DeleteModal from "./DeleteModal";
 
 const Dashboard = () => {
     const [books, setBooks] = useState<Book[]>([]);
     const [search, setSearch] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [editingBook, setEditingBook] = useState<Book | null>(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [bookToDelete, setBookToDelete] = useState<Book | null>(null);
 
     useEffect(() => {
         fetchBooks();
@@ -68,14 +71,14 @@ const Dashboard = () => {
                                         <td>{book.author}</td>
                                         <td>{book.description}</td>
                                         <td>
-                                            <button onClick={() => {
+                                            <button className="btn btn-primary" onClick={() => {
                                                 setEditingBook(book);
                                                 setShowModal(true);
                                             }}
                                             >Edit</button>
-                                            <button onClick={async () => {
-                                                await API.delete(`/books/${book.id}`);
-                                                fetchBooks(); // Refresh the book list after deletion
+                                            <button className="btn btn-secondary" onClick={() => {
+                                                setBookToDelete(book);
+                                                setShowDeleteModal(true);
                                             }}
                                             >Delete</button>
                                         </td>
@@ -97,6 +100,15 @@ const Dashboard = () => {
                     setShowModal(false);
                     fetchBooks();
                 }} />
+            )}
+
+            {showDeleteModal && bookToDelete && (
+                <DeleteModal book={bookToDelete} onClose={() => setShowDeleteModal(false)} onDeleted={() => {
+                    setShowDeleteModal(false);
+                    setBookToDelete(null);
+                    fetchBooks();
+                }}
+                />
             )}
         </>
     )
