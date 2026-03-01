@@ -36,6 +36,83 @@ body::before {
     opacity: 0.4;
 }
 
+/* ─── AUTH PAGE ─── */
+.auth-page {
+    min-height: 100vh;
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.auth-card {
+    width: 420px;
+    background: white;
+    border: 1px solid var(--cream);
+    border-radius: 16px;
+    padding: 48px 40px;
+    box-shadow: 0 24px 64px var(--shadow);
+    position: relative;
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: var(--amber);
+    border-radius: 16px 0 0 16px;
+}
+
+.auth-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--ink);
+}
+
+.auth-card input {
+    width: 100%;
+    background: var(--paper);
+    border: 1.5px solid var(--cream);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.auth-card input:focus {
+    border-color: var(--amber);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 137, 58, 0.1);
+}
+
+.auth-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.auth-switch {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(26, 18, 9, 0.5);
+}
+
+.auth-switch span {
+    color: var(--amber);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.auth-switch span:hover {
+    text-decoration: underline;
+}
+
 /* ─── SIDEBAR ─── */
 .sidebar {
     position: fixed;
@@ -72,7 +149,7 @@ body::before {
     margin-top: 6px;
 }
 
-.sidebar-nav {
+/* .sidebar-nav {
     flex: 1;
     padding: 32px 0;
 }
@@ -125,11 +202,12 @@ body::before {
     font-size: 16px;
     width: 20px;
     text-align: center;
-}
+} */
 
 .sidebar-footer {
     padding: 24px 32px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: auto;
 }
 
 .book-count {
@@ -146,6 +224,25 @@ body::before {
     line-height: 1.1;
     margin-bottom: 2px;
 }
+
+.logout-btn {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    border-color: var(--gold);
+    color: white;
+}
+
+.logout-btn .logout-icon { font-size: 15px; }
 
 /* ─── MAIN ─── */
 .main {
@@ -207,11 +304,6 @@ body::before {
     width: 100%;
 }
 
-.search-icon {
-    color: var(--amber);
-    font-size: 14px;
-}
-
 .btn {
     display: inline-flex;
     align-items: center;
@@ -241,10 +333,6 @@ body::before {
     background: transparent;
     color: var(--ink);
     border: 1.5px solid var(--cream);
-}
-
-.btn-ghost:hover {
-    border-color: var(--amber);
 }
 
 /* ─── CONTENT ─── */
@@ -673,78 +761,4 @@ textarea:focus {
 
 .toast-icon {
     font-size: 16px;
-}
-
-/* ─── EMPTY STATE ─── */
-.empty-state {
-    text-align: center;
-    padding: 80px 40px;
-    color: rgba(26, 18, 9, 0.4);
-}
-
-.empty-icon {
-    font-size: 56px;
-    margin-bottom: 16px;
-}
-
-.empty-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--ink);
-    margin-bottom: 8px;
-}
-
-.empty-desc {
-    font-size: 13px;
-    margin-bottom: 24px;
-}
-
-/* ─── BADGE ─── */
-.badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-family: 'DM Mono', monospace;
-}
-
-.badge-amber {
-    background: #fff4e0;
-    color: var(--amber);
-}
-
-/* ─── DECORATIVE LINE ─── */
-.deco-line {
-    height: 1px;
-    background: linear-gradient(to right, var(--amber), transparent);
-    margin: 0 0 40px;
-    opacity: 0.4;
-}
-
-/* Page tabs */
-.tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--cream);
-    margin-bottom: 32px;
-}
-
-.tab {
-    padding: 12px 24px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: all 0.2s;
-    color: rgba(26, 18, 9, 0.5);
-}
-
-.tab.active {
-    border-color: var(--amber);
-    color: var(--ink);
-}
-
-.tab:hover:not(.active) {
-    color: var(--ink);
 }

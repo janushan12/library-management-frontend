@@ -1,7 +1,12 @@
 import { useState } from "react";
 import API from "../services/api";
 
-const Login = ({ onLogin }: any) => {
+interface Props {
+    onLogin: () => void;
+    onSwitchToRegister: () => void;
+}
+
+const Login = ({ onLogin, onSwitchToRegister }: Props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,12 +21,16 @@ const Login = ({ onLogin }: any) => {
     };
 
     return (
-        <div className="login-page">
-            <h2>Login</h2>
-            <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-            <button className="btn btn-primary" onClick={login}>Login</button>
-        </div>
+            <div className="auth-card">
+                <h2 className="auth-title">Welcome Back</h2>
+
+                <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                <button className="btn btn-primary auth-btn" onClick={login}>Login</button>
+                <p className="auth-switch">
+                    New User? {""} <span onClick={onSwitchToRegister}>Register</span>
+                </p>
+            </div>
     );
 }
 

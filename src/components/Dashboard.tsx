@@ -31,6 +31,12 @@ const Dashboard = () => {
                     <div className="logo-title">Library</div>
                     <div className="logo-sub">Management System</div>
                 </div>
+                <div className="sidebar-footer">"
+                    <button className="logout-btn" onClick={() => {
+                        localStorage.removeItem("token");
+                        window.location.reload();
+                    }}>Logout</button>
+                </div>
             </aside>
 
             <main className="main">
